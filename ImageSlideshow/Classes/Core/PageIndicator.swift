@@ -100,7 +100,10 @@ public class LabelPageIndicator: UILabel, PageIndicatorView {
     }
 
     public override func sizeToFit() {
-        let maximumString = String(repeating: "8", count: numberOfPages) as NSString
+        // e.g. there're 10 pages, use 88/88 as the possible widest string,
+        // which is 2 digits and a slash sign
+        let maximumDigitCount = String(numberOfPages).count * 2 + 1
+        let maximumString = String(repeating: "8", count: maximumDigitCount)
         self.frame.size = maximumString.size(withAttributes: [.font: font as Any])
     }
 }
